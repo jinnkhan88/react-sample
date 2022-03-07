@@ -1,0 +1,207 @@
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@function max($numbers...) {
+  @return m#{a}x(#{$numbers});
+}
+
+@function min($numbers...) {
+  @return m#{i}n(#{$numbers});
+}
+
+$header-height: calculateRem(100px);
+$footer-height: calculateRem(100px);
+
+@mixin setStyleToAllPseudoClasses {
+  &, &:visited, &:focus, &:hover, &:active {
+    @content;
+  }
+}
+
+@mixin setStyleToAllPseudoClassesNoFocus {
+  &, &:visited, &:hover, &:active {
+    @content;
+  }
+}
+
+@mixin setStyleToAllPseudoClassesNoHover {
+  &, &:visited, &:focus, &:active {
+    @content;
+  }
+}
+
+%full-height {
+  height: 100%;
+}
+
+%full-width {
+  width: 100%;
+}
+
+%normal-text {
+  font-weight: 400;
+}
+
+%bold-text {
+  font-weight: 700;
+}
+
+%large-text {
+  font-size: calculateRem(24px);
+}
+
+%medium-text {
+  font-size: calculateRem(16px);
+}
+
+%small-text {
+  font-size: calculateRem(12px);
+}
+
+@include media-breakpoint-up(md) {
+  %large-text {
+    font-size: calculateRem(32px);
+  }
+
+  %medium-text {
+    font-size: calculateRem(24px);
+  }
+
+  %small-text {
+    font-size: calculateRem(16px);
+  }
+}
+
+%content-container {
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
+}
+
+html, body, .full-height {
+  @extend %full-height;
+}
+
+.full-width {
+  @extend %full-width;
+}
+
+body {
+  @extend %medium-text;
+  font-family: 'Lato', sans-serif;
+  overflow: hidden;
+  padding-top: $header-height;
+}
+
+.scroll-container {
+  overflow-y: scroll;
+}
+
+.content-container {
+  @extend %content-container;
+}
+
+.normal-text {
+  @extend %normal-text;
+}
+
+.bold-text {
+  @extend %bold-text;
+}
+
+.large-text {
+  @extend %large-text;
+}
+
+.medium-text {
+  @extend %medium-text;
+}
+
+.small-text {
+  @extend %small-text;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+h1 {
+  font-size: calculateRem(50px);
+}
+
+h2 {
+  font-size: calculateRem(32px);
+}
+
+h3 {
+  font-size: calculateRem(24px);
+}
+
+h4 {
+  font-size: calculateRem(16px);
+}
+
+@include media-breakpoint-up(md) {
+  h1 {
+    font-size: calculateRem(80px);
+  }
+
+  h2 {
+    font-size: calculateRem(48px);
+  }
+
+  h3 {
+    font-size: calculateRem(32px);
+  }
+
+  h4 {
+    font-size: calculateRem(24px);
+  }
+}
+
+a {
+  @include setStyleToAllPseudoClasses {
+    box-shadow: none;
+    padding: 0;
+    white-space: nowrap;
+
+    .underlined, &.underlined, &:hover {
+      text-decoration: underline;
+    }
+
+    &, &.no-underline:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.btn {
+  @include setStyleToAllPseudoClasses {
+    box-shadow: none;
+    line-height: normal;
+    height: calculateRem(48px);
+
+    @include media-breakpoint-up(md) {
+      height: calculateRem(60px);
+    }
+  }
+
+  & .spinner-border {
+    border: 0.2rem solid currentColor;
+    border-right-color: transparent;
+    height: calculateRem(30px);
+    width: calculateRem(30px);
+  }
+}
+
+.form-control {
+  @include setStyleToAllPseudoClasses {
+    box-shadow: none;
+    height: calculateRem(60px);
+  }
+}

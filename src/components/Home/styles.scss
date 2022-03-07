@@ -1,0 +1,10 @@
+@import 'index.scss';
+
+.container-fluid.home-container {
+  @extend %content-container;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

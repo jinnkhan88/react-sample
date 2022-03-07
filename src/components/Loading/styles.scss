@@ -1,0 +1,14 @@
+@import 'index.scss';
+
+.loading-container {
+  @extend %content-container
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.spinner-border.loading-spinner {
+  height: calculateRem(72px);
+  width: calculateRem(72px);
+}
