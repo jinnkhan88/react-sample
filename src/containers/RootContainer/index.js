@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  Route,
-  Switch,
-  useHistory,
-} from 'react-router-dom';
+import { Switch, useHistory } from 'react-router-dom';
+import PublicRouteContainer from 'containers/PublicRouteContainer';
 import HomeContainer from 'containers/HomeContainer';
 import { clearErrorsAction } from 'js/actions/errorActions';
 import { resetLoadingAction } from 'js/actions/loadingActions';
@@ -21,11 +18,13 @@ const RootContainer = (props) => {
   }), []);
 
   return (
-    <Switch>
-      <Route path="/">
-        <HomeContainer />
-      </Route>
-    </Switch>
+    <div className="full-height">
+      <Switch>
+        <PublicRouteContainer path="/">
+          <HomeContainer />
+        </PublicRouteContainer>
+      </Switch>
+    </div>
   );
 };
 
