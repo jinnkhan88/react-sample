@@ -41,4 +41,4 @@ All changes to the redux state are logged to the console in development, so you 
 
 ## Commands
 
-This project was created with create-react-app, so to compile and run the development server please run `yarn start`. This should result in a "Hello, World" page opening up in your browser - ready to be replaced by your sign up flow. If you have any issues/questions, please don't hesitate to ask!
+This project was created with `create-react-app`, so to compile and run the development server please run `yarn start`. This should result in a "Hello, World" page opening up in your browser - ready to be replaced by your sign up flow. If you have any issues/questions, please don't hesitate to ask!
