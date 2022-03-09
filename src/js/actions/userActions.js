@@ -2,6 +2,14 @@ const receiveUserAction = (payload) => ({ type: 'RECEIVE_USER', payload });
 
 const clearUserAction = () => ({ type: 'CLEAR_USER' });
 
+/*
+Sign Up Payload:
+- email: string (valid email)
+- password: string
+- firstName: string
+- lastName: string
+*/
+
 const signUpAction = (payload) => ({ type: 'SIGN_UP', payload });
 
 const logInAction = (payload) => ({ type: 'LOG_IN', payload });
