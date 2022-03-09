@@ -35,6 +35,6 @@ Invoking the dummy `signUp` method mentioned earlier has a couple possible outco
 
 - Calling the `signUp` method will set `isSignUpLoading` to `true` in the redux state for 5 seconds. After the method completes, this property will be set to false. We would like to see some visual indication when sign up is loading
 - Passing all of the required fields including an email address other than "testuser@gmail.com" will result in a dummy user being added to the redux state. This should result in a success message of some sort being displayed
-- Signing up with the email "testuser@gmail.com will result in an error that this email is already in use, and should result in the error message being displayed and the email field somehow highlighted
+- Signing up with the email "testuser@gmail.com" will result in an error that this email is already in use, and should result in the error message being displayed and the email field somehow highlighted
 
 All changes to the redux state are logged to the console in development, so you can take a look there to see what it looks like and get a sense of how to handle it. Please feel free to reach out with any clarifying questions as well.
