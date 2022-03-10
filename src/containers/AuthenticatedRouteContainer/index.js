@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
-import Loading from 'components/Loading';
-import { getUserAction } from 'js/actions/userActions';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Redirect, Route } from "react-router-dom";
+import Loading from "components/Loading";
+import { getUserAction } from "js/actions/userActions";
 
 const AuthenticatedRouteContainer = ({
   user: { token },
@@ -14,9 +14,16 @@ const AuthenticatedRouteContainer = ({
 }) => {
   const [isLoadStarted, setIsLoadStarted] = useState(false);
 
+  const getUserDetails = async () => {
+    try {
+      setIsLoadStarted(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     if (token) {
-      getUser();
+      getUserDetails();
       setIsLoadStarted(true);
     }
   }, []);
@@ -26,14 +33,18 @@ const AuthenticatedRouteContainer = ({
   return (
     <Route
       {...props}
-      render={({ location }) => (token ? content : (
-        <Redirect
-          to={{
-            pathname: '/log-in',
-            state: { from: isLoadStarted ? '' : location },
-          }}
-        />
-      ))}
+      render={({ location }) =>
+        token ? (
+          content
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: isLoadStarted ? "" : location },
+            }}
+          />
+        )
+      }
     />
   );
 };
@@ -65,5 +76,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(AuthenticatedRouteContainer);

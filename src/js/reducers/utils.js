@@ -1,16 +1,14 @@
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const createReducer = (initialState, handlers) => (
-  (state = initialState, action) => (action.type in handlers
-    ? handlers[action.type](state, action)
-    : state
-  )
-);
+const createReducer =
+  (initialState, handlers) =>
+  (state = initialState, action) =>
+    action.type in handlers ? handlers[action.type](state, action) : state;
 
 const createPersistedReducer = (initialState, handlers, key) => {
   const config = { key, storage };
-
+  debugger;
   return persistReducer(config, createReducer(initialState, handlers));
 };
 
@@ -30,8 +28,4 @@ const formatUser = (user) => {
   };
 };
 
-export {
-  createReducer,
-  createPersistedReducer,
-  formatUser,
-};
+export { createReducer, createPersistedReducer, formatUser };

@@ -1,28 +1,45 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Switch, useHistory } from 'react-router-dom';
-import PublicRouteContainer from 'containers/PublicRouteContainer';
-import HomeContainer from 'containers/HomeContainer';
-import { clearErrorsAction } from 'js/actions/errorActions';
-import { resetLoadingAction } from 'js/actions/loadingActions';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Switch, useHistory, Route } from "react-router-dom";
+import PublicRouteContainer from "containers/PublicRouteContainer";
+import HomeContainer from "containers/HomeContainer";
+import { clearErrorsAction } from "js/actions/errorActions";
+import { resetLoadingAction } from "js/actions/loadingActions";
+import SignupContainer from "containers/SignupContainer";
+import AuthenticatedRouteContainer from "containers/AuthenticatedRouteContainer";
+import Home from "components/Home";
+import AuthenticationContainer from "containers/AuthenticationContainer";
 
 const RootContainer = (props) => {
+  console.log("root props", props);
   const { clearErrors, resetLoading } = props;
 
   const history = useHistory();
 
-  useEffect(() => history.listen(() => {
-    clearErrors();
-    resetLoading();
-  }), []);
+  useEffect(
+    () =>
+      history.listen(() => {
+        clearErrors();
+        resetLoading();
+      }),
+    []
+  );
 
   return (
-    <div className="full-height">
+    <div className="tw-h-full tw-w-full">
       <Switch>
-        <PublicRouteContainer path="/">
-          <HomeContainer />
+        <PublicRouteContainer exact path="/">
+          <AuthenticationContainer />
         </PublicRouteContainer>
+
+        <PublicRouteContainer exact path="/register">
+          <SignupContainer />
+        </PublicRouteContainer>
+
+        <AuthenticatedRouteContainer exact path="/confirmation">
+          <HomeContainer />
+        </AuthenticatedRouteContainer>
       </Switch>
     </div>
   );
@@ -38,7 +55,4 @@ const mapDispatchToProps = (dispatch) => ({
   resetLoading: () => dispatch(resetLoadingAction()),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(RootContainer);
+export default connect(null, mapDispatchToProps)(RootContainer);

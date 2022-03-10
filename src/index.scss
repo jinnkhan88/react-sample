@@ -1,6 +1,9 @@
 // Import Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
 @function calculateRem($size) {
   $remSize: $size / 16px;
@@ -19,19 +22,29 @@ $header-height: calculateRem(100px);
 $footer-height: calculateRem(100px);
 
 @mixin setStyleToAllPseudoClasses {
-  &, &:visited, &:focus, &:hover, &:active {
+  &,
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
     @content;
   }
 }
 
 @mixin setStyleToAllPseudoClassesNoFocus {
-  &, &:visited, &:hover, &:active {
+  &,
+  &:visited,
+  &:hover,
+  &:active {
     @content;
   }
 }
 
 @mixin setStyleToAllPseudoClassesNoHover {
-  &, &:visited, &:focus, &:active {
+  &,
+  &:visited,
+  &:focus,
+  &:active {
     @content;
   }
 }
@@ -82,7 +95,15 @@ $footer-height: calculateRem(100px);
   min-height: calc(100vh - #{$header-height} - #{$footer-height});
 }
 
-html, body, .full-height {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+.full-height {
   @extend %full-height;
 }
 
@@ -92,9 +113,8 @@ html, body, .full-height {
 
 body {
   @extend %medium-text;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   overflow: hidden;
-  padding-top: $header-height;
 }
 
 .scroll-container {
@@ -170,11 +190,14 @@ a {
     padding: 0;
     white-space: nowrap;
 
-    .underlined, &.underlined, &:hover {
+    .underlined,
+    &.underlined,
+    &:hover {
       text-decoration: underline;
     }
 
-    &, &.no-underline:hover {
+    &,
+    &.no-underline:hover {
       text-decoration: none;
     }
   }
@@ -202,6 +225,5 @@ a {
 .form-control {
   @include setStyleToAllPseudoClasses {
     box-shadow: none;
-    height: calculateRem(60px);
   }
 }
